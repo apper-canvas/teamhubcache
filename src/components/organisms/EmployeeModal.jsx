@@ -53,7 +53,7 @@ const EmployeeModal = ({
     setErrors({});
   }, [employee, open]);
 
-  const validateForm = () => {
+const validateForm = () => {
     const newErrors = {};
 
     if (!formData.firstName.trim()) {
@@ -68,6 +68,12 @@ const EmployeeModal = ({
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone is required";
+    } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+      newErrors.phone = "Phone number format is invalid";
     }
 
     if (!formData.departmentId) {
@@ -181,14 +187,14 @@ const EmployeeModal = ({
                   </FormField>
 
 <FormField
-                    label="Secondary Date"
+                    label="Phone"
                     error={errors.phone}
                   >
                     <Input
-                      type="date"
+                      type="tel"
                       value={formData.phone}
                       onChange={(e) => handleChange("phone", e.target.value)}
-                      placeholder="Select date"
+                      placeholder="Enter phone number"
                       error={errors.phone}
                     />
                   </FormField>
