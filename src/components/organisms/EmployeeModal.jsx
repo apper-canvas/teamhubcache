@@ -201,7 +201,7 @@ const EmployeeModal = ({
                       value={formData.departmentId}
                       onChange={(e) => handleChange("departmentId", e.target.value)}
                       className="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    >
+>
                       <option value="">Select Department</option>
                       {departments.map((dept) => (
                         <option key={dept.Id} value={dept.Id.toString()}>
