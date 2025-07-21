@@ -11,7 +11,7 @@ export const employeeService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "first_name_c" } },
@@ -19,6 +19,7 @@ export const employeeService = {
           { field: { Name: "email_c" } },
           { field: { Name: "phone_c" } },
           { field: { Name: "role_c" } },
+          { field: { Name: "employee_as_c" } },
           { field: { Name: "start_date_c" } },
           { field: { Name: "status_c" } },
           { field: { Name: "avatar_c" } },
@@ -33,7 +34,7 @@ export const employeeService = {
         throw new Error(response.message);
       }
 
-      // Transform database fields to match UI expectations
+// Transform database fields to match UI expectations
       const employees = (response.data || []).map(emp => ({
         Id: emp.Id,
         firstName: emp.first_name_c || '',
@@ -41,6 +42,7 @@ export const employeeService = {
         email: emp.email_c || '',
         phone: emp.phone_c || '',
         role: emp.role_c || '',
+        employeeAs: emp.employee_as_c || '',
         startDate: emp.start_date_c || '',
         status: emp.status_c || 'active',
         avatar: emp.avatar_c || '',
@@ -68,7 +70,7 @@ export const employeeService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "first_name_c" } },
@@ -76,6 +78,7 @@ export const employeeService = {
           { field: { Name: "email_c" } },
           { field: { Name: "phone_c" } },
           { field: { Name: "role_c" } },
+          { field: { Name: "employee_as_c" } },
           { field: { Name: "start_date_c" } },
           { field: { Name: "status_c" } },
           { field: { Name: "avatar_c" } },
@@ -89,7 +92,7 @@ export const employeeService = {
         throw new Error("Employee not found");
       }
 
-      // Transform database fields to match UI expectations
+// Transform database fields to match UI expectations
       const employee = {
         Id: response.data.Id,
         firstName: response.data.first_name_c || '',
@@ -97,6 +100,7 @@ export const employeeService = {
         email: response.data.email_c || '',
         phone: response.data.phone_c || '',
         role: response.data.role_c || '',
+        employeeAs: response.data.employee_as_c || '',
         startDate: response.data.start_date_c || '',
         status: response.data.status_c || 'active',
         avatar: response.data.avatar_c || '',
@@ -124,7 +128,7 @@ export const employeeService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      // Transform UI fields to database fields, including only updateable fields
+// Transform UI fields to database fields, including only updateable fields
       const params = {
         records: [{
           Name: `${employeeData.firstName} ${employeeData.lastName}`,
@@ -133,6 +137,7 @@ export const employeeService = {
           email_c: employeeData.email,
           phone_c: employeeData.phone,
           role_c: employeeData.role,
+          employee_as_c: employeeData.employeeAs,
           start_date_c: employeeData.startDate,
           status_c: employeeData.status || 'active',
           avatar_c: employeeData.avatar || '',
@@ -160,13 +165,14 @@ export const employeeService = {
         
         const successfulRecord = response.results.find(result => result.success);
         if (successfulRecord) {
-          return {
+return {
             Id: successfulRecord.data.Id,
             firstName: successfulRecord.data.first_name_c || '',
             lastName: successfulRecord.data.last_name_c || '',
             email: successfulRecord.data.email_c || '',
             phone: successfulRecord.data.phone_c || '',
             role: successfulRecord.data.role_c || '',
+            employeeAs: successfulRecord.data.employee_as_c || '',
             startDate: successfulRecord.data.start_date_c || '',
             status: successfulRecord.data.status_c || 'active',
             avatar: successfulRecord.data.avatar_c || '',
@@ -194,7 +200,7 @@ export const employeeService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      // Transform UI fields to database fields, including only updateable fields
+// Transform UI fields to database fields, including only updateable fields
       const params = {
         records: [{
           Id: parseInt(id),
@@ -204,6 +210,7 @@ export const employeeService = {
           email_c: employeeData.email,
           phone_c: employeeData.phone,
           role_c: employeeData.role,
+          employee_as_c: employeeData.employeeAs,
           start_date_c: employeeData.startDate,
           status_c: employeeData.status || 'active',
           avatar_c: employeeData.avatar || '',
@@ -231,13 +238,14 @@ export const employeeService = {
         
         const successfulRecord = response.results.find(result => result.success);
         if (successfulRecord) {
-          return {
+return {
             Id: successfulRecord.data.Id,
             firstName: successfulRecord.data.first_name_c || '',
             lastName: successfulRecord.data.last_name_c || '',
             email: successfulRecord.data.email_c || '',
             phone: successfulRecord.data.phone_c || '',
             role: successfulRecord.data.role_c || '',
+            employeeAs: successfulRecord.data.employee_as_c || '',
             startDate: successfulRecord.data.start_date_c || '',
             status: successfulRecord.data.status_c || 'active',
             avatar: successfulRecord.data.avatar_c || '',

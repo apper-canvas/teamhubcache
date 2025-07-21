@@ -27,11 +27,14 @@ const EmployeeTable = ({ employees, departments, onEdit, onDelete }) => {
               <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Employee
               </th>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+<th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Department
               </th>
               <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Role
+              </th>
+              <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Employee As
               </th>
               <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Status
@@ -75,8 +78,11 @@ const EmployeeTable = ({ employees, departments, onEdit, onDelete }) => {
                     {getDepartmentName(employee.departmentId)}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900">{employee.role}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-900">{employee.employeeAs || '-'}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <StatusBadge status={employee.status} type="employee" />

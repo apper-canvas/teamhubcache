@@ -12,13 +12,14 @@ const EmployeeModal = ({
   employee = null, 
   departments = [] 
 }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     departmentId: "",
     role: "",
+    employeeAs: "",
     startDate: "",
     status: "active"
   });
@@ -26,7 +27,7 @@ const EmployeeModal = ({
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (employee) {
       setFormData({
         firstName: employee.firstName || "",
@@ -35,6 +36,7 @@ const EmployeeModal = ({
         phone: employee.phone || "",
         departmentId: employee.departmentId || "",
         role: employee.role || "",
+        employeeAs: employee.employeeAs || "",
         startDate: employee.startDate || "",
         status: employee.status || "active"
       });
@@ -46,6 +48,7 @@ const EmployeeModal = ({
         phone: "",
         departmentId: "",
         role: "",
+        employeeAs: "",
         startDate: "",
         status: "active"
       });
@@ -201,6 +204,18 @@ const validateForm = () => {
                       onChange={(e) => handleChange("role", e.target.value)}
                       placeholder="Software Engineer"
                       error={errors.role}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Employee As"
+                    error={errors.employeeAs}
+                  >
+                    <Input
+                      value={formData.employeeAs}
+                      onChange={(e) => handleChange("employeeAs", e.target.value)}
+                      placeholder="Full-time, Part-time, Contractor, etc."
+                      error={errors.employeeAs}
                     />
                   </FormField>
 
