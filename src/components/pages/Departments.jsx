@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import Avatar from "@/components/atoms/Avatar";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
+import FormField from "@/components/molecules/FormField";
+import Input from "@/components/atoms/Input";
 import { departmentService } from "@/services/api/departmentService";
 import { employeeService } from "@/services/api/employeeService";
 import { toast } from "react-toastify";
@@ -15,6 +17,14 @@ const Departments = () => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    managerId: ""
+  });
+  const [errors, setErrors] = useState({});
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -36,6 +46,66 @@ const Departments = () => {
       setError(err.message || "Failed to load departments");
     } finally {
       setLoading(false);
+    }
+};
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      description: "",
+      managerId: ""
+    });
+    setErrors({});
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Department name is required";
+    }
+    
+    if (!formData.description.trim()) {
+      newErrors.description = "Description is required";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({
+        ...prev,
+        [field]: ""
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setSubmitLoading(true);
+    try {
+      await departmentService.create(formData);
+      toast.success("Department created successfully!");
+      setShowModal(false);
+      resetForm();
+      await loadData(); // Refresh the departments list
+    } catch (error) {
+      toast.error(error.message || "Failed to create department");
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
@@ -61,7 +131,7 @@ const Departments = () => {
             Manage organizational departments and teams
           </p>
         </div>
-        <Button variant="primary">
+<Button variant="primary" onClick={() => setShowModal(true)}>
           <ApperIcon name="Plus" className="w-4 h-4 mr-2" />
           Add Department
         </Button>
@@ -73,7 +143,7 @@ const Departments = () => {
           title="No departments found"
           description="Get started by creating your first department to organize your team."
           actionText="Create Department"
-          onAction={() => toast.info("Department creation feature coming soon!")}
+          onAction={() => setShowModal(true)}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -167,7 +237,117 @@ const Departments = () => {
             );
           })}
         </div>
-      )}
+)}
+
+      {/* Department Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black bg-opacity-50"
+              onClick={() => {
+                setShowModal(false);
+                resetForm();
+              }}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-white rounded-xl shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 font-display">
+                    Add New Department
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Create a new department to organize your team
+                  </p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowModal(false);
+                    resetForm();
+                  }}
+                  disabled={submitLoading}
+                >
+                  <ApperIcon name="X" className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                <FormField
+                  label="Department Name"
+                  required
+                  error={errors.name}
+                >
+                  <Input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    placeholder="Enter department name"
+                    disabled={submitLoading}
+                  />
+                </FormField>
+
+                <FormField
+                  label="Description"
+                  required
+                  error={errors.description}
+                >
+                  <textarea
+                    value={formData.description}
+                    onChange={(e) => handleInputChange('description', e.target.value)}
+                    placeholder="Enter department description"
+                    rows={3}
+                    disabled={submitLoading}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-gray-50 disabled:cursor-not-allowed resize-none"
+                  />
+                </FormField>
+
+                <div className="flex space-x-3 pt-4">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={() => {
+                      setShowModal(false);
+                      resetForm();
+                    }}
+                    disabled={submitLoading}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={submitLoading}
+                    className="flex-1"
+                  >
+                    {submitLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                        Creating...
+                      </>
+                    ) : (
+                      <>
+                        <ApperIcon name="Plus" className="w-4 h-4 mr-2" />
+                        Create Department
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
