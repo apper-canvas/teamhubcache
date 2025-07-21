@@ -180,14 +180,15 @@ const EmployeeModal = ({
                     />
                   </FormField>
 
-                  <FormField
-                    label="Phone"
+<FormField
+                    label="Secondary Email"
                     error={errors.phone}
                   >
                     <Input
+                      type="email"
                       value={formData.phone}
                       onChange={(e) => handleChange("phone", e.target.value)}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="secondary@company.com"
                       error={errors.phone}
                     />
                   </FormField>

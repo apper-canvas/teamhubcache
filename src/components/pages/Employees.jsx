@@ -56,10 +56,11 @@ const Employees = () => {
   const filterEmployees = () => {
     let filtered = [...employees];
 
-    if (searchTerm) {
+if (searchTerm) {
       filtered = filtered.filter(emp =>
         `${emp.firstName} ${emp.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        emp.email.toLowerCase().includes(searchTerm.toLowerCase())
+        emp.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (emp.phone && emp.phone.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
