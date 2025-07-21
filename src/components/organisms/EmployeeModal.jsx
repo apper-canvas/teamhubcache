@@ -70,9 +70,9 @@ const validateForm = () => {
       newErrors.email = "Email is invalid";
     }
 
-    if (!formData.phone.trim()) {
+if (!formData.phone.trim()) {
       newErrors.phone = "Phone is required";
-    } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+    } else if (!/^[\d\s\-+()]+$/.test(formData.phone)) {
       newErrors.phone = "Phone number format is invalid";
     }
 
