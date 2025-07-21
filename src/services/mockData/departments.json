@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "name": "Engineering",
+    "managerId": "3",
+    "description": "Software development and technical operations"
+  },
+  {
+    "Id": 2,
+    "name": "Marketing",
+    "managerId": "2",
+    "description": "Brand management and customer acquisition"
+  },
+  {
+    "Id": 3,
+    "name": "Human Resources",
+    "managerId": "4",
+    "description": "Employee relations and organizational development"
+  },
+  {
+    "Id": 4,
+    "name": "Finance",
+    "managerId": "5",
+    "description": "Financial planning and accounting operations"
+  },
+  {
+    "Id": 5,
+    "name": "Sales",
+    "managerId": "7",
+    "description": "Customer relationships and revenue generation"
+  }
+]

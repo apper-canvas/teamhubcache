@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "employeeId": "1",
+    "type": "vacation",
+    "startDate": "2024-02-01",
+    "endDate": "2024-02-05",
+    "reason": "Family vacation to Hawaii",
+    "status": "pending",
+    "approvedBy": null,
+    "requestDate": "2024-01-10T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "employeeId": "2",
+    "type": "sick",
+    "startDate": "2024-01-18",
+    "endDate": "2024-01-19",
+    "reason": "Flu symptoms and doctor's appointment",
+    "status": "approved",
+    "approvedBy": "4",
+    "requestDate": "2024-01-17T14:20:00Z"
+  },
+  {
+    "Id": 3,
+    "employeeId": "3",
+    "type": "personal",
+    "startDate": "2024-02-14",
+    "endDate": "2024-02-14",
+    "reason": "Moving to new apartment",
+    "status": "pending",
+    "approvedBy": null,
+    "requestDate": "2024-01-12T09:15:00Z"
+  },
+  {
+    "Id": 4,
+    "employeeId": "5",
+    "type": "vacation",
+    "startDate": "2024-03-15",
+    "endDate": "2024-03-22",
+    "reason": "Spring break trip with family",
+    "status": "pending",
+    "approvedBy": null,
+    "requestDate": "2024-01-14T16:45:00Z"
+  },
+  {
+    "Id": 5,
+    "employeeId": "6",
+    "type": "sick",
+    "startDate": "2024-01-12",
+    "endDate": "2024-01-12",
+    "reason": "Food poisoning",
+    "status": "approved",
+    "approvedBy": "4",
+    "requestDate": "2024-01-12T07:30:00Z"
+  }
+]

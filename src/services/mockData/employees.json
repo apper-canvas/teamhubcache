@@ -1,0 +1,98 @@
+[
+  {
+    "Id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@company.com",
+    "phone": "+1 (555) 123-4567",
+    "departmentId": "1",
+    "role": "Software Engineer",
+    "startDate": "2023-01-15",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 2,
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "email": "sarah.johnson@company.com",
+    "phone": "+1 (555) 234-5678",
+    "departmentId": "2",
+    "role": "Marketing Manager",
+    "startDate": "2022-08-20",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 3,
+    "firstName": "Michael",
+    "lastName": "Chen",
+    "email": "michael.chen@company.com",
+    "phone": "+1 (555) 345-6789",
+    "departmentId": "1",
+    "role": "Senior Developer",
+    "startDate": "2021-03-10",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 4,
+    "firstName": "Emily",
+    "lastName": "Rodriguez",
+    "email": "emily.rodriguez@company.com",
+    "phone": "+1 (555) 456-7890",
+    "departmentId": "3",
+    "role": "HR Specialist",
+    "startDate": "2023-05-01",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 5,
+    "firstName": "David",
+    "lastName": "Wilson",
+    "email": "david.wilson@company.com",
+    "phone": "+1 (555) 567-8901",
+    "departmentId": "4",
+    "role": "Financial Analyst",
+    "startDate": "2022-11-15",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 6,
+    "firstName": "Lisa",
+    "lastName": "Thompson",
+    "email": "lisa.thompson@company.com",
+    "phone": "+1 (555) 678-9012",
+    "departmentId": "2",
+    "role": "Content Creator",
+    "startDate": "2023-02-28",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 7,
+    "firstName": "Robert",
+    "lastName": "Anderson",
+    "email": "robert.anderson@company.com",
+    "phone": "+1 (555) 789-0123",
+    "departmentId": "5",
+    "role": "Sales Representative",
+    "startDate": "2022-07-12",
+    "status": "active",
+    "avatar": ""
+  },
+  {
+    "Id": 8,
+    "firstName": "Jennifer",
+    "lastName": "Martinez",
+    "email": "jennifer.martinez@company.com",
+    "phone": "+1 (555) 890-1234",
+    "departmentId": "1",
+    "role": "UX Designer",
+    "startDate": "2023-04-05",
+    "status": "active",
+    "avatar": ""
+  }
+]
