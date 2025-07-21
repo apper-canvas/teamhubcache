@@ -56,36 +56,14 @@ const EmployeeModal = ({
 const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    // Only validate email format if email is provided
+    if (formData.email.trim() && !/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
 
-if (!formData.phone.trim()) {
-      newErrors.phone = "Phone is required";
-    } else if (!/^[\d\s\-+()]+$/.test(formData.phone)) {
+    // Only validate phone format if phone is provided
+    if (formData.phone.trim() && !/^[\d\s\-+()]+$/.test(formData.phone)) {
       newErrors.phone = "Phone number format is invalid";
-    }
-
-    if (!formData.departmentId) {
-      newErrors.departmentId = "Department is required";
-    }
-
-    if (!formData.role.trim()) {
-      newErrors.role = "Role is required";
-    }
-
-    if (!formData.startDate) {
-      newErrors.startDate = "Start date is required";
     }
 
     setErrors(newErrors);
@@ -145,9 +123,8 @@ if (!formData.phone.trim()) {
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <FormField
+<FormField
                       label="First Name"
-                      required
                       error={errors.firstName}
                     >
                       <Input
@@ -158,9 +135,8 @@ if (!formData.phone.trim()) {
                       />
                     </FormField>
 
-                    <FormField
+<FormField
                       label="Last Name"
-                      required
                       error={errors.lastName}
                     >
                       <Input
@@ -172,9 +148,8 @@ if (!formData.phone.trim()) {
                     </FormField>
                   </div>
 
-                  <FormField
+<FormField
                     label="Email"
-                    required
                     error={errors.email}
                   >
                     <Input
@@ -199,9 +174,8 @@ if (!formData.phone.trim()) {
                     />
                   </FormField>
 
-                  <FormField
+<FormField
                     label="Department"
-                    required
                     error={errors.departmentId}
                   >
                     <select
@@ -218,9 +192,8 @@ if (!formData.phone.trim()) {
                     </select>
                   </FormField>
 
-                  <FormField
+<FormField
                     label="Role"
-                    required
                     error={errors.role}
                   >
                     <Input
@@ -231,9 +204,8 @@ if (!formData.phone.trim()) {
                     />
                   </FormField>
 
-                  <FormField
+<FormField
                     label="Start Date"
-                    required
                     error={errors.startDate}
                   >
                     <Input
